@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+chromadb
+pymupdf
+langchain-text-splitters
+python-dotenv
+anthropic
