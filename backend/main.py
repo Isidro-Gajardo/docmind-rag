@@ -5,6 +5,27 @@ from pydantic import BaseModel
 from rag import indexar_pdf, consultar, obtener_coordenadas, UPLOADS_DIR, renderizar_pagina
 from typing import Optional
 
+from datetime import datetime, date
+from collections import defaultdict
+
+# Límite de consultas por día por IP
+LIMITE_DIARIO = 2
+consultas_por_ip = defaultdict(lambda: {"count": 0, "fecha": date.today()})
+
+def verificar_limite(ip: str):
+    registro = consultas_por_ip[ip]
+    
+    # Si es un día nuevo, resetear contador
+    if registro["fecha"] != date.today():
+        registro["count"] = 0
+        registro["fecha"] = date.today()
+    
+    if registro["count"] >= LIMITE_DIARIO:
+        return False
+    
+    registro["count"] += 1
+    return True
+
 app = FastAPI()
 
 app.add_middleware(
@@ -49,8 +70,18 @@ class ChatRequest(BaseModel):
     document_ids: list[str] = []
     historial: list[dict] = []
 
+from fastapi import Request
+
 @app.post("/chat")
-def chat(request: ChatRequest):
+def chat(request: ChatRequest, req: Request):
+    ip = req.client.host
+    
+    if not verificar_limite(ip):
+        raise HTTPException(
+            status_code=429,
+            detail="Has alcanzado el límite de 2 consultas por día. Vuelve mañana."
+        )
+    
     return consultar(
         pregunta=request.question,
         document_ids=request.document_ids,

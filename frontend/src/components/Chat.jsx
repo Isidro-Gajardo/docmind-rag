@@ -56,9 +56,10 @@ function Chat({ docActivo, docUrl, docId }) {
         }))
       }])
     } catch (error) {
+      const mensaje = error.response?.data?.detail || "Hubo un error al consultar el documento."
       setMensajes(prev => [...prev, {
         role: "ai",
-        content: "Hubo un error al consultar el documento. Intenta de nuevo.",
+        content: mensaje,
         sources: []
       }])
     }
