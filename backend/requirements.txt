@@ -5,3 +5,4 @@ pymupdf
 langchain-text-splitters
 python-dotenv
 anthropic
+python-multipart
