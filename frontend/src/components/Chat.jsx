@@ -35,7 +35,7 @@ function Chat({ docActivo, docUrl, docId }) {
     setPensando(true)
 
     try {
-      const resultado = await axios.post("http://localhost:8000/chat", {
+      const resultado = await axios.post("https://docmind-backend-pmol.onrender.com/chat", {
         question: preguntaActual,
         document_ids: [docActivo],
         historial: mensajes.slice(-4).map(m => ({

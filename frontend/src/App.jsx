@@ -28,7 +28,7 @@ function App() {
 
     try {
       const respuesta = await axios.post(
-        "http://localhost:8000/upload",
+        "https://docmind-backend-pmol.onrender.com/upload",
         formData
       )
 

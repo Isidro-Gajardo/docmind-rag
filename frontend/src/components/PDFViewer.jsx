@@ -12,7 +12,7 @@ function PDFViewer({ url, paginaInicial = 1, docId, textoResaltar, onCerrar }) {
     setImagen(null)
 
     try {
-      const resultado = await axios.post("http://localhost:8000/pagina", {
+      const resultado = await axios.post("https://docmind-backend-pmol.onrender.com/pagina", {
         doc_id: docId,
         pagina: pagina,
         texto_resaltar: texto
