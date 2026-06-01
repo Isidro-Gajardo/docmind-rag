@@ -75,6 +75,14 @@ Proyecto en desarrollo activo. Mejoras planificadas:
 - Soporte para PDFs escaneados con OCR
 - Modo multiDocumento: consultar varios PDFs simultáneamente en una misma pregunta
 
+## Demo en vivo
+
+https://docmind-frontend-ses2.onrender.com
+
+> El servicio gratuito de Render puede tardar ~30 segundos en 
+> despertar si estuvo inactivo. Las consultas están limitadas 
+> a 2 por día por usuario.
+
 ## Autor
 
 Isidro Gajardo — Ingeniero en Informática  
