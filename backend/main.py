@@ -47,6 +47,13 @@ async def subir_pdf(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="Solo se aceptan archivos PDF.")
 
     contenido = await file.read()
+
+     # Limite de 5MB para el plan gratuito
+    if len(contenido) > 5 * 1024 * 1024:
+        raise HTTPException(
+            status_code=400, 
+            detail="El PDF supera el límite de 5MB. Para la demo usa documentos más pequeños."
+        )
     
     try:
         doc_id, paginas = indexar_pdf(contenido, file.filename)

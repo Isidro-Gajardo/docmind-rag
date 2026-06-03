@@ -2,7 +2,7 @@ import { FileText, Eye, X, Files } from "lucide-react"
 
 function Sidebar({ documentos, docActivo, onSeleccionar, onEliminar, onVerPDF }) {
   return (
-    <div className="w-64 min-w-64 bg-gray-900 border-r border-gray-700 flex flex-col">
+    <div className="w-64 min-w-64 bg-gray-900 border-r border-gray-700 flex flex-col h-full">
       
       <div className="p-4 border-b border-gray-700">
         <p className="text-xs text-gray-500 uppercase tracking-widest font-semibold">
